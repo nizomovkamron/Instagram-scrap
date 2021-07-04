@@ -2,10 +2,6 @@ const randomUseragent = require("random-useragent");
 const fetch = require("node-fetch");
 const { JSDOM } = require("jsdom");
 
-var HttpProxyAgent = require("https-proxy-agent");
-
-var { randomableProxy } = require("./proxy");
-
 const instagram = async (url) => {
   let request = await fetch("https://instaoffline.net/process/", {
     headers: {
