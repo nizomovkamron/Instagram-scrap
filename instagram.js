@@ -1,4 +1,3 @@
-const randomUseragent = require("random-useragent");
 const fetch = require("node-fetch");
 const { JSDOM } = require("jsdom");
 
