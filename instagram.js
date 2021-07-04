@@ -23,25 +23,16 @@ const instagram = async (url) => {
     credentials: "include",
   });
   request = await request.text();
-  var { document } = new JSDOM(request).window;
+  request = JSON.parse(request);
+  var { document } = new JSDOM(request.html).window;
   var i = document.querySelectorAll("a");
   var imgs = [];
   var videos = [];
   for (let x = 0; x < i.length; x++) {
     if (i.item(x).text.search("Download Video") != -1) {
-      videos.push(
-        i
-          .item(x)
-          .href.replace(/[^\w\s]"/, "")
-          .replace('"', "")
-      );
+      videos.push(i.item(x).getAttribute("href"));
     } else if (i.item(x).text.search("Download Image") != -1) {
-      imgs.push(
-        i
-          .item(x)
-          .href.replace(/[^\w\s]"/, "")
-          .replace('"', "")
-      );
+      imgs.push(i.item(x).getAttribute("href"));
     }
   }
   return [imgs, videos];
